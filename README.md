@@ -1,0 +1,1 @@
+# Crop-Identification-Using-Medium-Resolution-Satellite-Image

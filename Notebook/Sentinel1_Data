@@ -1,1 +1,19 @@
-
+var table = ee.FeatureCollection("projects/ee-mraj776384/assets/mohitraj-20250225T050432Z-001");
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
+var sentinel1 = ee.ImageCollection("COPERNICUS/S1_GRD")
+    .filterBounds(table)
+    .filterDate("2018-06-01", "2018-10-01") // Modify as needed
+    .filter(ee.Filter.eq("instrumentMode", "IW"))
+    .filter(ee.Filter.eq("orbitProperties_pass", "DESCENDING"))
+    .filter(ee.Filter.listContains("transmitterReceiverPolarisation", "VH"))
+    .select(["VH"]);
+var s1_image = sentinel1.median().clip(table);
+Map.addLayer(s1_image, {min: -25, max: 0, palette: ["blue", "white"]}, "Sentinel-1 VH");
+Export.image.toDrive({
+  image: s1_image,
+  description: "Sentinel1_VH_Bhagalpur",
+  scale : 10,
+  region: table.geometry(),
+  maxPixels: 1e13
+  
+});

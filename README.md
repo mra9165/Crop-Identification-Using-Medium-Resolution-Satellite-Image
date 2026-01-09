@@ -66,6 +66,4 @@ To identify and classify crop types using time-series vegetation indices and a R
 - Google Earth Engine
 - European Space Agency (ESA)
 
-## 📬 Author
-- **Name:** Your Name
-- **Location:** Karnataka, India
+
